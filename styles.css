@@ -1,0 +1,424 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    color: #333;
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    background-color: #f5f5f5;
+    padding: 60px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.5em;
+    color: #666;
+}
+
+/* **Updated Social Links Styles** */
+.social-links {
+    display: flex;                /* Establish Flexbox layout */
+    justify-content: center;      /* Center the items horizontally */
+    align-items: center;          /* Center the items vertically */
+    gap: 20px;                    /* Equal spacing between icons */
+    margin-top: 20px;             /* Optional: Add top margin */
+}
+
+.social-links a {
+    /* Removed margin: 0 10px; */
+    font-size: 1.2em;
+    color: inherit;               /* Ensure icons inherit the parent color */
+    position: relative;           /* Necessary for tooltip positioning */
+}
+
+/* Optional: Adjust gap and icon size for smaller screens */
+@media (max-width: 600px) {
+    .social-links {
+        gap: 15px; /* Reduce gap on smaller screens */
+    }
+    
+    .social-links a {
+        font-size: 1em; /* Adjust icon size for better fit */
+    }
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #333;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #444;
+}
+
+/* Main Content Styles */
+main {
+    padding: 40px 0;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+section h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;    /* Center the items */
+    /* Removed flex-wrap and justify-content */
+}
+
+.project-item {
+    background-color: #f9f9f9;
+    margin: 15px 0;         /* Adjusted margin for vertical spacing */
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;             /* Set a suitable width */
+    max-width: 600px;       /* Optional: Limit maximum width */
+}
+
+.publication-list {
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;    /* Center the items */
+    /* Removed flex-wrap and justify-content */
+}
+
+.publication-item {
+    background-color: #f9f9f9;
+    margin: 15px 0;         /* Adjusted margin for vertical spacing */
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;             /* Set a suitable width */
+    max-width: 600px;       /* Optional: Limit maximum width */
+}
+
+/* Education Section Styles */
+.education-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.education-item {
+    background-color: #ffffff;
+    border-left: 4px solid #007acc;
+    padding: 20px 30px;
+    margin: 20px 0;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.education-item::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    background-color: #007acc;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+.education-item h3 {
+    font-size: 1.8em;
+    color: #007acc;
+    margin-bottom: 5px;
+}
+
+.education-item p {
+    font-size: 1em;
+    color: #555555;
+    margin: 5px 0;
+}
+
+.education-item .degree {
+    font-weight: bold;
+}
+
+.education-item .institution {
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .education-item {
+        padding: 15px 20px;
+    }
+
+    .education-item h3 {
+        font-size: 1.5em;
+    }
+
+    .education-item p {
+        font-size: 0.95em;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* About Me Section Styles */
+/* Updated About Me Section Styles */
+/* About Me Section Styles */
+.about-container {
+    /* border: 2px solid #007acc; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px; /* Ensures the container doesn't stretch too wide on large screens */
+    margin: 0 auto;
+    padding: 5px 10px; /* Increased padding for better spacing */
+    gap: 40px; /* Adds space between the image and the content */
+}
+
+.about-image {
+    flex: 0 0 30%; /* Occupies 30% of the container's width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the image horizontally */
+    justify-content: center; /* Centers the image vertically */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 250px; /* Limits the maximum width of the image */
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.about-image h1 {
+    margin: 5px 0; /* Reduced margin */
+    font-size: 1.8em; /* Slightly reduced font size */
+}
+
+.about-image p {
+    margin: 5px 0; /* Reduced margin */
+    font-size: 1em; /* Slightly reduced font size */
+}
+
+/* Social Links Styles */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Reduced gap */
+    margin-top: 10px; /* Reduced top margin */
+}
+
+
+.social-links a,
+.social-links .email-link {
+    font-size: 1.5em;
+    color: #007acc;
+    position: relative;
+}
+
+.social-links .email-address {
+    /* Tooltip styles as previously defined */
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 8px;
+    position: absolute;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: opacity 0.3s;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.social-links .email-link:hover .email-address {
+    visibility: visible;
+    opacity: 1;
+}
+
+.social-links .email-address::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.about-content {
+    flex: 1 1 70%; /* Occupies the remaining 70% of the container's width */
+    text-align: left; /* Aligns text to the left for better readability */
+    margin-bottom: 100px; /* Add some top padding to move content up */
+}
+
+.about-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: left; /* Ensures the heading aligns with the text */
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: left; /* Ensures the paragraph aligns with the text */
+    color: #333;
+}
+
+
+
+
+.copy-button {
+    margin-left: 10px;
+    background-color: #555;
+    border: none;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #777;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image,
+    .about-content {
+        flex: 0 0 100%;
+        margin-right: 0;
+    }
+
+    .about-content h2,
+    .about-content p {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+
+.experience-gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.experience-item {
+    width: 22%;
+    min-width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+
+.experience-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.experience-item .caption {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .experience-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-item {
+        width: 90%;
+    }
+}
