@@ -133,18 +133,25 @@ section p {
 
 .publication-list {
     display: flex;
-    flex-direction: column; /* Changed from row to column */
-    align-items: center;    /* Center the items */
-    /* Removed flex-wrap and justify-content */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .publication-item {
     background-color: #f9f9f9;
-    margin: 15px 0;         /* Adjusted margin for vertical spacing */
+    margin: 15px auto;         /* Changed to auto for horizontal centering */
     padding: 20px;
     border-radius: 8px;
-    width: 80%;             /* Set a suitable width */
+    width: 40%;             /* Set a suitable width */
     max-width: 600px;       /* Optional: Limit maximum width */
+    display: flex;          /* Added to enable flexbox centering */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center;    /* Center child elements horizontally */
+    text-align: center;     /* Center text content */
 }
 
 /* Education Section Styles */
@@ -233,8 +240,9 @@ footer p {
     justify-content: center;
     max-width: 1200px; /* Ensures the container doesn't stretch too wide on large screens */
     margin: 0 auto;
-    padding: 5px 10px; /* Increased padding for better spacing */
+    padding: 0px 10px; /* Increased padding for better spacing */
     gap: 40px; /* Adds space between the image and the content */
+    margin-bottom: 20px; /* Reduced from 100px to 20px */
 }
 
 .about-image {
@@ -323,9 +331,9 @@ footer p {
 }
 
 .about-content {
-    flex: 1 1 70%; /* Occupies the remaining 70% of the container's width */
+    flex: 1 1 80%; /* Occupies the remaining 70% of the container's width */
     text-align: left; /* Aligns text to the left for better readability */
-    margin-bottom: 100px; /* Add some top padding to move content up */
+    margin-bottom: 20px; /* Reduced from 100px to 20px */
 }
 
 .about-content h2 {
@@ -388,7 +396,8 @@ footer p {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 2px 0;
+    margin-top: 5px; /* Adjust this value as needed */
 }
 
 .experience-item {
