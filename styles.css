@@ -111,7 +111,7 @@ section p {
     font-size: 1.2em;
     line-height: 1.6;
     text-align: center;
-    max-width: 800px;
+    /* max-width: 800px; */
     margin: 0 auto;
 }
 
@@ -567,4 +567,24 @@ footer p {
 .youtube-video,
 .instagram-video {
     padding: 10px;
+}
+
+.text-container {
+    width: 80%; /* Set width to 75% of the screen */
+    margin: 0 auto; /* Center the container */
+    /* border: 2px solid #007acc; */
+}
+
+.text-container p {
+    margin: 0 auto; /* Center the container */
+    /* border: 2px solid #007acc; */
+    padding: 0px;
+}
+
+.achievements-list {
+    width: 80%;
+    margin: 0 auto; /* Center the list horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content vertically */
 }
