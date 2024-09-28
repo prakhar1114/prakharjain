@@ -431,3 +431,64 @@ footer p {
         width: 90%;
     }
 }
+
+/* Work Experience Styles */
+.work-experience-list {
+    display: flex;                /* Enable flexbox */
+    flex-wrap: wrap;             /* Allow items to wrap to the next line */
+    justify-content: center;      /* Center items horizontally */
+    padding: 0;                  /* Remove default padding */
+    /* flex-direction: column; */
+}
+
+.work-experience-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;                /* Adjusted margin for spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 650px;            /* Set maximum width for each item */
+    min-width: 600px;            /* Set minimum width for each item */
+    width: calc(33.33% - 20px);  /* Set width to allow three items per row with margin */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .work-experience-item {
+        width: calc(50% - 20px);  /* Two items per row on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .work-experience-item {
+        width: 100%;               /* One item per row on small screens */
+    }
+}
+
+.work-experience-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px; /* Reduced margin below the heading */
+    color: #333;
+    font-size: 1.5em; /* Increased font size for the heading */
+}
+
+.work-experience-item h4 {
+    margin: 2px 0; /* Reduced margin for subheading */
+    color: #007acc; /* Color for subheading */
+    font-size: 1.2em; /* Font size for subheading */
+}
+
+.work-experience-item p {
+    margin: 5px 0; /* Reduced margin for paragraph */
+    color: #666;
+}
+
+.work-experience-item ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.work-experience-item li {
+    margin-bottom: 5px;
+    color: #444;
+}
