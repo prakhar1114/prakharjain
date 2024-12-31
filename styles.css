@@ -143,11 +143,11 @@ section p {
 
 .publication-item {
     background-color: #f9f9f9;
-    margin: 15px auto;         /* Changed to auto for horizontal centering */
+    margin: 5px;      
     padding: 20px;
     border-radius: 8px;
-    width: 40%;             /* Set a suitable width */
-    max-width: 600px;       /* Optional: Limit maximum width */
+    width: 100%;             /* Set a suitable width */
+    max-width: 500px;       /* Optional: Limit maximum width */
     display: flex;          /* Added to enable flexbox centering */
     flex-direction: column; /* Stack child elements vertically */
     align-items: center;    /* Center child elements horizontally */
