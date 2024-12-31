@@ -436,7 +436,7 @@ footer p {
 .work-experience-list {
     display: flex;                /* Enable flexbox */
     flex-wrap: wrap;             /* Allow items to wrap to the next line */
-    justify-content: center;      /* Center items horizontally */
+    justify-content: space-around;      /* Center items horizontally */
     padding: 0;                  /* Remove default padding */
     /* flex-direction: column; */
 }
@@ -444,24 +444,25 @@ footer p {
 .work-experience-item {
     background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 20px;
-    margin: 10px;                /* Adjusted margin for spacing */
+    padding: 20px;               /* Adjusted margin for spacing */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;            /* Set maximum width for each item */
-    min-width: 600px;            
+    max-width: 800px;            /* Adjusted max-width */
     width: calc(33.33% - 20px);  /* Set width to allow three items per row with margin */
+    margin-bottom: 10px;
 }
 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
     .work-experience-item {
         width: calc(50% - 20px);  /* Two items per row on medium screens */
+        min-width: unset;         /* Remove minimum width constraint */
     }
 }
 
 @media (max-width: 480px) {
     .work-experience-item {
-        width: 100%;               /* One item per row on small screens */
+        width: 100%;              /* One item per row on small screens */
+        min-width: unset;         /* Remove minimum width constraint */
     }
 }
 
@@ -583,8 +584,155 @@ footer p {
 
 .achievements-list {
     width: 80%;
+    max-width: 800px;
     margin: 0 auto; /* Center the list horizontally */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the content vertically */
+    align-items: left; /* Center the content vertically */
+}
+
+/* Mobile Font Size Adjustments */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header h1 {
+        font-size: 2.5em;
+    }
+    
+    header p {
+        font-size: 1.3em;
+    }
+    
+    /* Section headings */
+    section h2 {
+        font-size: 2em;
+    }
+    
+    section p {
+        font-size: 1.1em;
+    }
+    
+    /* Work experience adjustments */
+    .work-experience-item h3 {
+        font-size: 1.3em;
+    }
+    
+    .work-experience-item h4 {
+        font-size: 1.1em;
+    }
+    
+    .work-experience-item p,
+    .work-experience-item li {
+        font-size: 0.95em;
+    }
+    
+    /* Education adjustments */
+    .education-item h3 {
+        font-size: 1.5em;
+    }
+    
+    .education-item p {
+        font-size: 0.95em;
+    }
+    
+    /* About section */
+    .about-image h1 {
+        font-size: 1.6em;
+    }
+    
+    .about-image p {
+        font-size: 0.95em;
+    }
+    
+    .about-content h2 {
+        font-size: 2em;
+    }
+    
+    .about-content p {
+        font-size: 1.1em;
+    }
+    
+    /* Project and publication items */
+    .project-item p,
+    .publication-item p {
+        font-size: 1em;
+    }
+    
+    /* Experience captions */
+    .experience-item .caption,
+    .drone-pictures .caption {
+        font-size: 0.85em;
+    }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+    /* Header adjustments */
+    header h1 {
+        font-size: 2em;
+    }
+    
+    header p {
+        font-size: 1.2em;
+    }
+    
+    /* Section headings */
+    section h2 {
+        font-size: 1.8em;
+    }
+    
+    section p {
+        font-size: 1em;
+    }
+    
+    /* Work experience adjustments */
+    .work-experience-item h3 {
+        font-size: 1.2em;
+    }
+    
+    .work-experience-item h4 {
+        font-size: 1em;
+    }
+    
+    .work-experience-item p,
+    .work-experience-item li {
+        font-size: 0.9em;
+    }
+    
+    /* Education adjustments */
+    .education-item h3 {
+        font-size: 1.3em;
+    }
+    
+    .education-item p {
+        font-size: 0.9em;
+    }
+    
+    /* About section */
+    .about-image h1 {
+        font-size: 1.4em;
+    }
+    
+    .about-image p {
+        font-size: 0.9em;
+    }
+    
+    .about-content h2 {
+        font-size: 1.8em;
+    }
+    
+    .about-content p {
+        font-size: 1em;
+    }
+    
+    /* Project and publication items */
+    .project-item p,
+    .publication-item p {
+        font-size: 0.9em;
+    }
+    
+    /* Experience captions */
+    .experience-item .caption,
+    .drone-pictures .caption {
+        font-size: 0.8em;
+    }
 }
