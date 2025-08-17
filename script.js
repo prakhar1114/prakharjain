@@ -37,4 +37,88 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(textarea);
         });
     });
+
+    // Timeline Animation on Scroll
+    function initTimelineAnimation() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        if (timelineItems.length === 0) return; // Exit if no timeline items found
+        
+        // Function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        // Function to check if element is partially in viewport
+        function isPartiallyInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            return (
+                rect.top < windowHeight &&
+                rect.bottom > 0
+            );
+        }
+        
+        // Function to animate timeline items
+        function animateTimelineItems() {
+            timelineItems.forEach((item, index) => {
+                if (isPartiallyInViewport(item)) {
+                    // Add a small delay for each item for staggered animation
+                    setTimeout(() => {
+                        item.classList.add('animate');
+                    }, index * 200);
+                }
+            });
+        }
+        
+        // Initial check when page loads
+        animateTimelineItems();
+        
+        // Listen for scroll events
+        let ticking = false;
+        
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    animateTimelineItems();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Also trigger on window resize
+        window.addEventListener('resize', animateTimelineItems);
+        
+        // Parallax effect for timeline items (optional enhancement)
+        function addParallaxEffect() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            timelineItems.forEach((item, index) => {
+                if (isPartiallyInViewport(item)) {
+                    const speed = 0.1; // Adjust for more/less parallax effect
+                    const yPos = -(scrollTop * speed);
+                    const card = item.querySelector('.timeline-card');
+                    if (card) {
+                        card.style.transform = `translateY(${yPos}px)`;
+                    }
+                }
+            });
+        }
+        
+        // Optional: Enable parallax effect
+        // window.addEventListener('scroll', addParallaxEffect);
+    }
+    
+    // Initialize timeline animation
+    initTimelineAnimation();
 });
