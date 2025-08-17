@@ -55,13 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
             );
         }
         
-        // Function to check if element is partially in viewport
-        function isPartiallyInViewport(element) {
+        // Function to check if element is entering viewport (more generous trigger)
+        function isEnteringViewport(element) {
             const rect = element.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             
+            // Trigger animation when element is 70% into the viewport (faster trigger)
             return (
-                rect.top < windowHeight &&
+                rect.top < windowHeight * 0.8 &&
                 rect.bottom > 0
             );
         }
@@ -69,11 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to animate timeline items
         function animateTimelineItems() {
             timelineItems.forEach((item, index) => {
-                if (isPartiallyInViewport(item)) {
-                    // Add a small delay for each item for staggered animation
+                if (isEnteringViewport(item) && !item.classList.contains('animate')) {
+                    // Reduced delay for faster appearance
                     setTimeout(() => {
                         item.classList.add('animate');
-                    }, index * 200);
+                    }, index * 100); // Reduced from 200ms to 100ms
                 }
             });
         }
