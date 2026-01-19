@@ -499,6 +499,71 @@
         ul.lst-kix_i1yh70xn0p2a-2 { list-style-type: none }
         .lst-kix_6rfaqfc45x6s-7>li:before { content: "\0025cb   " }
         .lst-kix_4l3a23hv2zhk-2>li:before { content: "\0025a0   " }
+
+        /* Quick Links (Blog Navigator) */
+        .blog-navigator {
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            padding: 10pt 12pt;
+            border-radius: 8px;
+            margin: 10pt 0 12pt 0;
+        }
+        .blog-navigator__title {
+            margin: 0 0 6pt 0;
+            font-family: "Newsreader";
+            font-weight: 700;
+            font-size: 14pt;
+            line-height: 1.2;
+            color: #111827;
+        }
+        .blog-navigator__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0;
+        }
+        .blog-navigator__item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 10pt;
+            padding: 6pt 0;
+            border-radius: 0;
+            background: transparent;
+            border: none;
+            border-top: 1px solid #eef2f7;
+        }
+        .blog-navigator__item:first-child {
+            border-top: none;
+        }
+        .blog-navigator__question {
+            font-family: "Newsreader";
+            font-size: 12.5pt;
+            line-height: 1.35;
+            color: #111827;
+        }
+        .blog-navigator__link {
+            font-family: "Newsreader";
+            font-size: 12.5pt;
+            line-height: 1.35;
+            text-decoration: underline;
+            color: #1155cc;
+            white-space: nowrap;
+        }
+        .blog-navigator__link:focus,
+        .blog-navigator__link:hover {
+            color: #0b4aa8;
+        }
+        @media (max-width: 640px) {
+            .blog-navigator__item {
+                grid-template-columns: 1fr;
+                gap: 6pt;
+            }
+            .blog-navigator__link {
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 <body class="c36 doc-content">
@@ -506,8 +571,34 @@
         <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 595.76px; height: 324.60px;">
             <img alt="" src="images/image2.png" style="width: 595.76px; height: 324.60px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="">
         </span>
-        <span class="c25 c6 c29">The Evaluation Imperative: Building Robust Agentic Applications</span>
+        <span class="c25 c6 c29">How to Build Reliable Agents with Evals</span>
     </h1>
+
+    <nav class="blog-navigator" aria-label="Quick Links">
+        <p class="blog-navigator__title">Quick Links</p>
+        <ol class="blog-navigator__list">
+            <li class="blog-navigator__item">
+                <span class="blog-navigator__question">Why is my agent so fragile?</span>
+                <a class="blog-navigator__link" href="#h.ms12lj1mjx0l">The Mathematics of Failure</a>
+            </li>
+            <li class="blog-navigator__item">
+                <span class="blog-navigator__question">What are the most common ways agents break?</span>
+                <a class="blog-navigator__link" href="#h.ler68su6iu4x">Challenges &amp; Common Failures</a>
+            </li>
+            <li class="blog-navigator__item">
+                <span class="blog-navigator__question">How do I build an automated evaluation pipeline?</span>
+                <a class="blog-navigator__link" href="#h.y2r0nwscvs5">The Evaluation Pipeline</a>
+            </li>
+            <li class="blog-navigator__item">
+                <span class="blog-navigator__question">How do I stop updates from breaking existing features?</span>
+                <a class="blog-navigator__link" href="#h.sp1s1niqk2lh">The Upgrade Protocol (Regression Policy)</a>
+            </li>
+            <li class="blog-navigator__item">
+                <span class="blog-navigator__question">What should I measure besides &quot;Did it work&quot;?</span>
+                <a class="blog-navigator__link" href="#h.tbtfd0gtos6u">Key Evaluation Metrics</a>
+            </li>
+        </ol>
+    </nav>
 
     <p class="c4">
         <span class="c0">Building reliable AI agents presents a fundamental shift from traditional software engineering. Because Large Language Models (LLMs) operate as probabilistic black boxes, developers face a dual challenge.</span>
