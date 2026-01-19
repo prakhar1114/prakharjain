@@ -730,6 +730,12 @@
             <span class="c2">Experiment</span><span class="c0">: A single execution run of a specific version of the product (e.g., specific prompt hash, temperature, or model version) against a defined dataset.</span>
         </li>
         <li class="c1 li-bullet-0">
+            <span class="c2">Trace</span><span class="c0">: A complete record of a single agent run (or logical workflow), identified by a </span><span class="c6 c7">trace_id</span><span class="c0">.</span>
+        </li>
+        <li class="c1 li-bullet-0">
+            <span class="c2">Span</span><span class="c0">: A unit of work within a Trace (e.g., a function call, LLM call, or tool use) with its own ID, inputs, outputs, and metadata.</span>
+        </li>
+        <li class="c1 li-bullet-0">
             <span class="c2">Sample Scores</span><span class="c0">: The granular performance rating for a single data point within a dataset, measured across specific criteria (e.g., exact match, latency, tool selection accuracy).</span>
         </li>
         <li class="c1 li-bullet-0">
@@ -743,7 +749,24 @@
         </li>
     </ul>
 
-    <h3 class="c3" id="h.y2r0nwscvs5"><span class="c6 c8">2. The Evaluation Pipeline</span></h3>
+    <h3 class="c3" id="what-to-trace"><span class="c6 c8">2. What to Trace?</span></h3>
+    <p class="c4"><span class="c0">To diagnose logic failures effectively, you must look beyond simple inputs and outputs and capture the agent&rsquo;s full execution lifecycle. A robust trace schema should include:</span></p>
+
+    <ul class="c20 lst-kix_cz1e1jqbzbg2-0 start">
+        <li class="c1 li-bullet-0">
+            <span class="c2">Core Context</span><span class="c0">: The ground truth state, including user messages, full conversation history, and the specific </span><span class="c6 c7">System Prompt Version</span><span class="c0">. This is critical for linking performance regressions back to specific code or prompt updates.</span>
+        </li>
+        <li class="c1 li-bullet-0">
+            <span class="c2">Execution Trajectory</span><span class="c0">: The agent&rsquo;s &quot;thought process,&quot; encompassing intermediate Chain-of-Thought reasoning, specific tool inputs/outputs, and visual states (such as screenshots for UI agents).</span>
+        </li>
+        <li class="c1 li-bullet-0">
+            <span class="c2">Operational Metrics</span><span class="c0">: Granular data on token usage and step latency to calculate the &quot;Cost per Task&quot; and pinpoint performance bottlenecks.</span>
+        </li>
+    </ul>
+
+    <p class="c4"><span class="c2">Why this matters:</span><span class="c0">&nbsp;High-fidelity tracing reveals the system&rsquo;s critical bottlenecks, clarifying which metrics (e.g., latency vs. accuracy) you need to prioritize first. It also accelerates Dataset Curation&mdash;modern evaluation clients (like Laminar) allow you to directly flag specific trace spans and promote them to your &quot;Golden Dataset,&quot; turning every production run into a potential test case.</span></p>
+
+    <h3 class="c3" id="h.y2r0nwscvs5"><span class="c6 c8">3. The Evaluation Pipeline</span></h3>
     <p class="c4"><span class="c0">A reproducible automated evaluation loop generally follows a five-step process:</span></p>
 
     <ol class="c20 lst-kix_d5gkbbq9x206-0 start" start="1">
@@ -771,7 +794,7 @@
         <span class="c2">Figure 4: The Experiment Dashboard.</span><span class="c0">&nbsp;A comparative view of performance metrics across different runs, allowing engineers to instantly visualize regressions or improvements.</span>
     </p>
 
-    <h3 class="c3" id="h.sp1s1niqk2lh"><span class="c8 c6">3. The &quot;Upgrade Protocol&quot; (Regression Policy)</span></h3>
+    <h3 class="c3" id="h.sp1s1niqk2lh"><span class="c8 c6">4. The &quot;Upgrade Protocol&quot; (Regression Policy)</span></h3>
     <p class="c4"><span class="c0">Integrating evaluations into the CI/CD pipeline transitions a team from manual oversight to systematic, data-driven validation. A robust protocol enforces the following logic for all merge requests:</span></p>
 
     <ul class="c20 lst-kix_4l3a23hv2zhk-0 start">
@@ -810,6 +833,28 @@
 
     <h3 class="c3" id="h.xjby9ebbyumh"><span class="c8 c6">1. Target Output Comparison</span></h3>
     <p class="c4"><span class="c0">The system compares the agent&#39;s final response against a &quot;Target Output&quot; dataset. This reference acts as a semantic checklist containing the Correct Answer (factual conclusion) and Required Information (essential data points that must be present).</span></p>
+    <p class="c4">
+        <span class="c0">For example, DeepEval&rsquo;s </span>
+        <span class="c22 c6"><a class="c23" href="https://deepeval.com/docs/metrics-llm-evals">G-Eval</a></span>
+        <span class="c0">&nbsp;(LLM-as-a-judge) can score an output against an expected reference using custom criteria:</span>
+    </p>
+    <pre style="margin: 6pt 0 12pt 0; padding: 10pt 12pt; border: 1px solid #e5e7eb; background: #ffffff; border-radius: 8px; overflow-x: auto; line-height: 1.35;"><code style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; font-size: 10.5pt;">from deepeval.metrics import GEval
+from deepeval.test_case import LLMTestCaseParams
+
+correctness_metric = GEval(
+    name=&quot;Correctness&quot;,
+    criteria=&quot;Determine whether the actual output is factually correct based on the expected output.&quot;,
+    evaluation_steps=[
+        &quot;Check whether the facts in 'actual output' contradicts any facts in 'expected output'&quot;,
+        &quot;You should also heavily penalize omission of detail&quot;,
+        &quot;Vague language, or contradicting OPINIONS, are OK&quot;
+    ],
+    evaluation_params=[
+        LLMTestCaseParams.INPUT,
+        LLMTestCaseParams.ACTUAL_OUTPUT,
+        LLMTestCaseParams.EXPECTED_OUTPUT
+    ],
+)</code></pre>
 
     <h3 class="c3" id="h.w7opb5ixwyg1"><span class="c6 c35">2. </span><span class="c8 c6">The DAG Evaluation Dimensions</span></h3>
     <p class="c30">
@@ -821,7 +866,7 @@
         <li class="c9 li-bullet-0">
             <span class="c6">Routing &amp; Specialization Accuracy: Validates whether the Orchestrator prioritized the most appropriate tool. This includes enforcing </span>
             <span class="c6 c7">Tool Fit</span><span class="c6">&nbsp;(penalizing the use of a generic tool when a specialized one is available) and </span>
-            <span class="c6 c7">Boundary Enforcement</span><span class="c0">&nbsp;(ensuring API tools do not hallucinate capabilities outside their domain).</span>
+            <span class="c6 c7">Boundary Enforcement</span><span class="c0">&nbsp;(ensuring subagent tools do not hallucinate capabilities outside their domain).</span>
         </li>
         <li class="c9 li-bullet-0">
             <span class="c0">Delegation Quality (Anti-Micromanagement): Evaluates the abstraction level of instructions. The model rewards high-level, objective-based instructions (e.g., &quot;Research visa requirements&quot;) while penalizing micromanagement where the Orchestrator dictates internal sub-steps that a subagent tool should handle autonomously.</span>
@@ -834,6 +879,13 @@
             <span class="c6 c28">FAILURE</span><span class="c0">, the judge awards points if the Orchestrator modifies its strategy (e.g., refining a query). Conversely, penalties are applied if the Orchestrator claims success despite underlying tool failures.</span>
         </li>
     </ul>
+
+    <p class="c21">
+        <img alt="DAG evaluator flowchart" src="images/dag_flowchart.png" style="max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px;">
+    </p>
+    <p class="c21">
+        <span class="c2 c14">Figure 5: </span><span class="c25 c6 c14">DAG Evaluator Engine: Extracting rich details from the trace to assess the agent&rsquo;s trajectory</span>
+    </p>
 
     <p class="c5 c31"><span class="c0"></span></p>
 
